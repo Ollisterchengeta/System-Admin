@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .   # This assumes Dockerfiles are in the root directory
-      dockerfile: Dockerfile.app
+      dockerfile: Dockerfile
     ports:
       - "8080:80"
     depends_on:
