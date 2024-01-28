@@ -1,4 +1,4 @@
-name: Laravel CI/CD
+name: Your Workflow Name
 
 on:
   push:
@@ -13,35 +13,17 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Set up Docker
-      run: echo "Docker already installed"
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '14'  # Replace with your desired Node.js version
 
-    - name: Build Docker Images
+    - name: Install Dependencies
       run: |
-        docker-compose build
+        npm install
 
-    - name: Test
+    - name: Build
       run: |
-        # Add any testing commands you need here
-        docker-compose run app php artisan test
+        npm run build  # Adjust the build command based on your project
 
-  deploy:
-    runs-on: ubuntu-latest
-
-    needs: build
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Set up Docker
-      run: echo "Docker already installed"
-
-    - name: Deploy to Docker Hub
-      run: |
-        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-        docker-compose push
-
-    - name: Deploy to Production
-      run: |
-        # Add any deployment commands you need here
+    # Add more steps as needed for your workflow
