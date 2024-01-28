@@ -1,0 +1,5 @@
+# Use the official Redis image as the base image
+FROM redis:latest
+
+# Expose port 6379 for Redis
+EXPOSE 6379
